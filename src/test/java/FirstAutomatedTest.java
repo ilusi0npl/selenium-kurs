@@ -29,6 +29,15 @@ public class FirstAutomatedTest {
         assertTrue(pageTitle.contains("JavaStart"));
     }
 
+    @Test
+    public void mySecondTest() {
+        driver.navigate().to("https://selenium.dev/");
+
+        String pageTitle = driver.getTitle();
+
+        assertTrue(pageTitle.equals("SeleniumHQ Browser Automation"));
+    }
+
     @AfterMethod
     public void afterTest() {
         driver.close();
