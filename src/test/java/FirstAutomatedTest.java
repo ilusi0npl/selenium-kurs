@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
+
 public class FirstAutomatedTest {
 
     private WebDriver driver;
@@ -27,15 +28,6 @@ public class FirstAutomatedTest {
         String pageTitle = driver.getTitle();
 
         assertTrue(pageTitle.contains("JavaStart"));
-    }
-
-    @Test
-    public void mySecondTest() {
-        driver.navigate().to("https://selenium.dev/");
-
-        String pageTitle = driver.getTitle();
-
-        assertTrue(pageTitle.equals("SeleniumHQ Browser Automation"));
     }
 
     @AfterMethod
