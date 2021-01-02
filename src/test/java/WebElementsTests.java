@@ -154,6 +154,30 @@ public class WebElementsTests {
         assertEquals(countryDropDown.getFirstSelectedOption().getText(), "UK");
     }
 
+    @Test
+    public void checkIfElementsOnPageTest(){
+
+        WebElement usernameField = driver.findElement(By.id("username"));
+        WebElement passwordField = driver.findElement(By.id("password"));
+        WebElement emailLabel = driver.findElement(By.cssSelector("span[class='help-block']"));
+
+        System.out.println("Is usernameField displayed: " + usernameField.isDisplayed());
+        System.out.println("Is usernameField enabled: " + usernameField.isEnabled());
+
+        System.out.println("Is passwordField displayed: " + passwordField.isDisplayed());
+        System.out.println("Is passwordField enabled: " + passwordField.isEnabled());
+
+        System.out.println("Is emailLabel displayed: " + emailLabel.isDisplayed());
+        System.out.println("Is emailLabel enabled: " + emailLabel.isEnabled());
+
+        assertTrue(usernameField.isDisplayed());
+        assertTrue(passwordField.isDisplayed());
+        assertTrue(emailLabel.isDisplayed());
+
+        assertTrue(usernameField.isEnabled());
+        assertFalse(passwordField.isEnabled());
+    }
+
     private void sleep() {
         try {
             Thread.sleep(3000);
