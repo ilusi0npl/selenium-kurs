@@ -31,7 +31,7 @@ public class WebElementsTests {
     }
 
     @Test
-    public void filePickingTest(){
+    public void filePickingTest() {
 
         sleep();
 
@@ -39,6 +39,25 @@ public class WebElementsTests {
         uploadFilePicker.sendKeys("C:\\test.txt");
 
         sleep();
+    }
+
+    @Test
+    public void typingAndClearingValueInsideWebElementTest() {
+
+        WebElement userNameField = driver.findElement(By.id("username"));
+        sleep();
+        userNameField.sendKeys("Selenium Start");
+
+        String typeUserNameValue = userNameField.getAttribute("value");
+        sleep();
+
+        assertEquals(typeUserNameValue, "Selenium Start");
+
+        userNameField.clear();
+        sleep();
+
+        String emptyUserNameField = userNameField.getAttribute("value");
+        assertEquals(emptyUserNameField, "");
     }
 
     private void sleep() {
