@@ -2,9 +2,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.Assert.*;
 
@@ -92,6 +96,35 @@ public class WebElementsTests {
         assertFalse(pizzaCheckbox.isSelected());
         assertFalse(spaghettiCheckbox.isSelected());
         assertFalse(hamburgerCheckbox.isSelected());
+    }
+
+    @Test
+    public void dropDownListingTest() {
+
+        sleep();
+
+        WebElement countryWebElement = driver.findElement(By.id("country"));
+
+        Select countryDropDown = new Select(countryWebElement);
+
+        List<WebElement> options = countryDropDown.getOptions();
+
+        List<String> namesOfOptions = new ArrayList<>();
+
+        for (WebElement option : options) {
+
+            namesOfOptions.add(option.getText());
+
+            System.out.println(option.getText());
+        }
+        List<String> expectedNamesOfOptions = new ArrayList<>();
+        expectedNamesOfOptions.add("Germany");
+        expectedNamesOfOptions.add("Poland");
+        expectedNamesOfOptions.add("UK");
+
+        sleep();
+
+        assertEquals(namesOfOptions, expectedNamesOfOptions);
     }
 
     private void sleep() {
