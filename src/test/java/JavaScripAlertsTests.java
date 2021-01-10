@@ -1,3 +1,4 @@
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,6 +48,22 @@ public class JavaScripAlertsTests {
         driver.switchTo().alert().dismiss();
 
         assertEquals(result.getText(), "You clicked: Cancel");
+    }
+
+    @Test
+    public void javaScriptAlertPromptTest() {
+        WebElement jsConfirmButton = driver.findElement(By.cssSelector("button[onclick='jsPrompt()']"));
+        jsConfirmButton.click();
+
+        String typedText = "Selenium is cool";
+
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys(typedText);
+        alert.accept();
+
+        WebElement result = driver.findElement(By.id("result"));
+
+        assertEquals(result.getText(), "You entered: " + typedText);
     }
 
     @AfterMethod
