@@ -18,7 +18,7 @@ public class JavaScripAlertsTests {
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
-        driver.navigate().to("http://theinternet.przyklady.javastart.pl/javascript_alerts");
+        driver.navigate().to("http://theinernet.przyklady.javastart.pl/javascript_alerts");
     }
 
     @Test
@@ -26,10 +26,27 @@ public class JavaScripAlertsTests {
         WebElement jsAlertButton = driver.findElement(By.cssSelector("button[onclick='jsAlert()']"));
         jsAlertButton.click();
 
-        driver.switchTo().alert().accept();
+        driver.switchTo().alert().dismiss();
         WebElement result = driver.findElement(By.id("result"));
 
         assertEquals(result.getText(), "You successfuly clicked an alert");
+    }
+
+    @Test
+    public void javaScriptAlertConfirmTest() {
+        WebElement jsConfirmButton = driver.findElement(By.cssSelector("button[onclick='jsConfirm()']"));
+        jsConfirmButton.click();
+
+        driver.switchTo().alert().accept();
+        WebElement result = driver.findElement(By.id("result"));
+
+        assertEquals(result.getText(), "You clicked: Ok");
+
+        jsConfirmButton.click();
+
+        driver.switchTo().alert().dismiss();
+
+        assertEquals(result.getText(), "You clicked: Cancel");
     }
 
     @AfterMethod
