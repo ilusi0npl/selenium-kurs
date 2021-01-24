@@ -4,14 +4,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 import testng.practice.tests.page.objects.LoginPage;
 
 import static org.testng.Assert.assertTrue;
 
 public class LoginTests {
+
+    private IncorrectLoginTestData incorrectLoginTestData;
     private WebDriver driver;
+
+    public LoginTests(IncorrectLoginTestData incorrectLoginTestData) {
+        this.incorrectLoginTestData = incorrectLoginTestData;
+    }
 
     @BeforeMethod
     public void beforeTest() {
@@ -20,26 +26,32 @@ public class LoginTests {
         driver.navigate().to("http://theinternet.przyklady.javastart.pl/login");
     }
 
-    @Test(dataProvider = "incorrectLoginData")
-    public void asUserLoginUsingIncorrectCredentials(String username, String password, String expectedMessage) {
+    @Test
+    public void asUserLoginUsingIncorrectCredentials() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoUserNameField(username);
-        loginPage.typeIntoPasswordField(password);
+        loginPage.typeIntoUserNameField(incorrectLoginTestData.getUsername());
+        loginPage.typeIntoPasswordField(incorrectLoginTestData.getPassword());
         loginPage.clickOnLoginButton();
 
         String warningMessage = loginPage.getWarningMessage();
 
-        assertTrue(warningMessage.contains(expectedMessage));
+        assertTrue(warningMessage.contains(incorrectLoginTestData.getExpectedMessage()));
     }
 
-    @DataProvider
-    public Object[][] incorrectLoginData() {
-        return new Object[][]{
-                {"", "", "Your username is invalid!"},
-                {"tomsmith", "Bad password", "Your password is invalid!"},
-                {"Bad login", "SuperSecretPassword!", "Your username is invalid!"}};
-    }
+    @Factory
+    public static Object[] incorrectLoginData() {
+        LoginTests firstTestToExecute = new LoginTests
+                (new IncorrectLoginTestData("", "", "Your username is invalid!"));
+        LoginTests secondTestToExecute = new LoginTests
+                (new IncorrectLoginTestData("tomsmith", "Bad password", "Your password is invalid!"));
+        LoginTests thirdTestToExecute = new LoginTests
+                (new IncorrectLoginTestData("Bad login", "SuperSecretPassword!", "Your username is invalid!"));
 
+        return new Object[]{
+                firstTestToExecute,
+                secondTestToExecute,
+                thirdTestToExecute};
+    }
 
     @AfterMethod
     public void afterTest() {
