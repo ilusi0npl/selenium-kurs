@@ -2,7 +2,10 @@ package testng.practice.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import testng.practice.tests.page.objects.LoginPage;
 
 import static org.testng.Assert.assertTrue;
@@ -17,16 +20,17 @@ public class LoginTests {
         driver.navigate().to("http://theinternet.przyklady.javastart.pl/login");
     }
 
+    @Parameters({"username", "password", "expectedWarning"})
     @Test
-    public void loginUsingBadPassword() {
+    public void asUserLoginUsingIncorrectCredentials(String username, String password, String expectedWarning) {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.typeIntoUserNameField("tomsmith");
-        loginPage.typeIntoPasswordField("Bad password");
+        loginPage.typeIntoUserNameField(username);
+        loginPage.typeIntoPasswordField(password);
         loginPage.clickOnLoginButton();
 
         String warningMessage = loginPage.getWarningMessage();
 
-        assertTrue(warningMessage.contains("Your password is invalid!"));
+        assertTrue(warningMessage.contains(expectedWarning));
     }
 
     @AfterMethod
