@@ -19,10 +19,10 @@ public class FirstAutomatedTest {
 
     @Test
     public void myFirstTest() {
-        driver.navigate().to("http://google.pl");
+        driver.navigate().to("https://duckduckgo.com/");
 
-        driver.findElement(By.name("q")).sendKeys("JavaStart");
-        driver.findElement(By.name("q")).submit();
+        driver.findElement(By.id("search_form_input_homepage")).sendKeys("JavaStart");
+        driver.findElement(By.id("search_form_input_homepage")).submit();
 
         String pageTitle = driver.getTitle();
 
