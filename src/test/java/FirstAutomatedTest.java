@@ -35,7 +35,7 @@ public class FirstAutomatedTest {
 
         String pageTitle = driver.getTitle();
 
-        assertTrue(pageTitle.equals("SeleniumHQ Browser Automation"));
+        assertTrue(pageTitle.equals("Selenium"));
     }
 
     @AfterMethod
