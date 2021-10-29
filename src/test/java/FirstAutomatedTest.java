@@ -30,6 +30,7 @@ public class FirstAutomatedTest {
         assertTrue(pageTitle.contains("JavaStart"));
     }
 
+        assertTrue(pageTitle.equals("Selenium"));
     @AfterMethod
     public void afterTest() {
         driver.close();
