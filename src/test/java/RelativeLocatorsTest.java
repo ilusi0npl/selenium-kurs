@@ -24,11 +24,11 @@ public class RelativeLocatorsTest {
     public void relativeLocatorTest() {
         WebElement pageTitle = driver.findElement(By.tagName("h2"));
 
-        WebElement firstNameTextField = driver.findElement(RelativeLocator.withTagName("input").below(pageTitle));
+        WebElement firstNameTextField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(pageTitle));
 
-        WebElement lastNameTextFieldSuperSecretPassword = driver.findElement(RelativeLocator.withTagName("input").below(firstNameTextField));
+        WebElement lastNameTextFieldSuperSecretPassword = driver.findElement(RelativeLocator.with(By.tagName("input")).below(firstNameTextField));
 
-        WebElement loginButton = driver.findElement(RelativeLocator.withTagName("button").below(lastNameTextFieldSuperSecretPassword));
+        WebElement loginButton = driver.findElement(RelativeLocator.with(By.tagName("button")).below(lastNameTextFieldSuperSecretPassword));
 
         firstNameTextField.sendKeys("tomsmith");
         lastNameTextFieldSuperSecretPassword.sendKeys("SuperSecretPassword!");
