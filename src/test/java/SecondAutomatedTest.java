@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -7,8 +6,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-
-public class FirstAutomatedTest {
+public class SecondAutomatedTest {
 
     private WebDriver driver;
 
@@ -19,15 +17,12 @@ public class FirstAutomatedTest {
     }
 
     @Test
-    public void myFirstTest() {
-        driver.navigate().to("https://duckduckgo.com/");
-
-        driver.findElement(By.id("search_form_input_homepage")).sendKeys("JavaStart");
-        driver.findElement(By.id("search_form_input_homepage")).submit();
+    public void mySecondTest() {
+        driver.navigate().to("http://selenium.dev/");
 
         String pageTitle = driver.getTitle();
 
-        assertTrue(pageTitle.contains("JavaStart"));
+        assertTrue(pageTitle.equals("Selenium"));
     }
 
     @AfterMethod
@@ -35,4 +30,5 @@ public class FirstAutomatedTest {
         driver.close();
         driver.quit();
     }
+
 }
