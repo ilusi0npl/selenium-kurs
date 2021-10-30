@@ -19,7 +19,7 @@ public class JavaScriptErrorTests {
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
-        driver.navigate().to("http://theinernet.przyklady.javastart.pl/javascript_error");
+        driver.navigate().to("http://theinternet.przyklady.javastart.pl/javascript_error");
     }
 
     @Test
@@ -34,7 +34,7 @@ public class JavaScriptErrorTests {
 
         for (LogEntry logEntry : logEntries) {
             if (logEntry.getMessage().contains(errorName)) {
-                System.out.println("There was an error on the page: " + logEntry.toString());
+                System.out.println("There was an error on the page: " + logEntry);
                 errorPresent = true;
                 continue;
             }
