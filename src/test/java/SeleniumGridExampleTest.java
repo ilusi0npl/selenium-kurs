@@ -18,15 +18,15 @@ public class SeleniumGridExampleTest {
     @BeforeMethod
     public void beforeTest() throws MalformedURLException {
         ChromeOptions capability = new ChromeOptions();
-        driver = new RemoteWebDriver(new URL("http://196.168.1.3:4444/wd/hub"), capability);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444"), capability);
     }
 
     @Test
-    public void searchQueryInGoogle() {
-        driver.navigate().to("http://google.pl");
+    public void searchInDuckDuckGoTest() {
+        driver.navigate().to("https://duckduckgo.com/");
 
-        driver.findElement(By.name("q")).sendKeys("JavaStart");
-        driver.findElement(By.name("q")).submit();
+        driver.findElement(By.id("search_form_input_homepage")).sendKeys("JavaStart");
+        driver.findElement(By.id("search_form_input_homepage")).submit();
 
         String pageTitle = driver.getTitle();
 
