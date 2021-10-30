@@ -18,7 +18,7 @@ public class ScreenShotMakeTests {
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
-        driver.navigate().to("http://google.pl");
+        driver.navigate().to("https://duckduckgo.com/");
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ScreenShotMakeTests {
         ScreenShotMaker screenShotMaker = new ScreenShotMaker(driver);
         screenShotMaker.makeScreenshot("GoogleBeforeTypingQueryPage.png");
 
-        WebElement searchField = driver.findElement(By.name("q"));
+        WebElement searchField = driver.findElement(By.id("search_form_input_homepage"));
         searchField.sendKeys("Kurs Selenium");
 
         screenShotMaker.makeScreenshot("GoogleAfterTypingQueryPage.png");
