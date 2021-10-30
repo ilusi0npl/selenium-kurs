@@ -21,7 +21,7 @@ public class WithFindElementStaleElementReferenceExceptionTests {
 
     @Test
     public void staleElementWorkingTest() {
-        driver.navigate().to("http://theinernet.przyklady.javastart.pl/notification_message_rendered");
+        driver.navigate().to("http://theinternet.przyklady.javastart.pl/notification_message_rendered");
 
         //W celu uniknięcia duplikacji została stworzona dodatkowa metoda o nazwie assertThaCorrectActionMessageIsDisplayed
         //Metoda w parametrze przyjmuje treść wiadomości
