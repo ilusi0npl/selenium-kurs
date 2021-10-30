@@ -18,7 +18,7 @@ public class JavaScripAlertsTests {
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
-        driver.navigate().to("http://theinernet.przyklady.javastart.pl/javascript_alerts");
+        driver.navigate().to("http://theinternet.przyklady.javastart.pl/javascript_alerts");
     }
 
     @Test
