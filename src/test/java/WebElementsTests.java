@@ -181,6 +181,8 @@ public class WebElementsTests {
 
     @Test
     public void hoverOverAndClickAndHoldTest() {
+        driver.navigate().to("http://przyklady.javastart.pl/test/hover_mouse.html");
+
         WebElement smileyIcon = driver.findElement(By.id("smiley"));
 
         Actions action = new Actions(driver);
