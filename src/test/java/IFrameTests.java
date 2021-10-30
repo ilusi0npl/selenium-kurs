@@ -18,7 +18,7 @@ public class IFrameTests {
 
     @Test
     public void iFrameTest() {
-        driver.navigate().to("http://theinernet.przyklady.javastart.pl/nested_frames");
+        driver.navigate().to("http://theinternet.przyklady.javastart.pl/nested_frames");
 
         //Przejście do ramki nadrzędnej
         driver.switchTo().frame("frame-top");
