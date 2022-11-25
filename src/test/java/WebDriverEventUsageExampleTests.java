@@ -1,12 +1,12 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -22,14 +22,13 @@ public class WebDriverEventUsageExampleTests {
         //Utworzenie obiektu typu DriverEventListener
         DriverEventListener driverEventListener = new DriverEventListener();
 
-        //Utworzenie obiektu typu EventFiringWebDriver
-        EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
+        // Utworzenie obiektu EventFiringDecorator, który to w konstruktorze przymuje stworzoną przez nas klasę DriverEventListener
+        EventFiringDecorator eventFiringDecorator = new EventFiringDecorator(driverEventListener);
 
-        //Zarejestrowanie obiektu driverEventListener oraz napisanie zmiennej driver
-        driver = eventFiringWebDriver.register(driverEventListener);
+        // W ramach metody decorate "dekorujemy" stworzony poprzednio przez WebDrivera
+        driver = eventFiringDecorator.decorate(driver);
 
-
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.navigate().to("http://przyklady.javastart.pl/jpetstore/");
     }
 
