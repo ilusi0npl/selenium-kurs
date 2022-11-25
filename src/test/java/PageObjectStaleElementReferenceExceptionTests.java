@@ -21,7 +21,7 @@ public class PageObjectStaleElementReferenceExceptionTests {
 
     @Test
     public void staleElementWorkingTest() {
-        driver.navigate().to("http://theinernet.przyklady.javastart.pl/notification_message_rendered");
+        driver.navigate().to("http://theinternet.przyklady.javastart.pl/notification_message_rendered");
 
         notificationMessagePage = new NotificationMessagePage(driver);
         assertThaCorrectActionMessageIsDisplayed(ACTION_UNSUCCESFUL_PLEASE_TRY_AGAIN);
