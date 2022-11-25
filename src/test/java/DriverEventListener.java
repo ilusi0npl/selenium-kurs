@@ -1,94 +1,88 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.openqa.selenium.support.events.WebDriverListener;
 
 import java.util.Arrays;
+import java.util.List;
 
-public class DriverEventListener implements WebDriverEventListener {
+public class DriverEventListener implements WebDriverListener {
+
     @Override
-    public void beforeAlertAccept(WebDriver driver) {
-        System.out.println("Trying to accept alert");
+    public void beforeFindElement(WebDriver driver, By locator) {
+        WebDriverListener.super.beforeFindElement(driver, locator);
+        System.out.println("Trying to find WebElement with locator " + locator.toString());
     }
 
     @Override
-    public void afterAlertAccept(WebDriver driver) {
-        System.out.println("Alert was accepted");
+    public void afterFindElement(WebDriver driver, By locator, WebElement result) {
+        WebDriverListener.super.afterFindElement(driver, locator, result);
+        System.out.println("Found WebElement with locator " + locator.toString());
     }
 
     @Override
-    public void afterAlertDismiss(WebDriver driver) {
-        System.out.println("Alert was dismissed");
+    public void beforeFindElements(WebDriver driver, By locator) {
+        WebDriverListener.super.beforeFindElements(driver, locator);
+        System.out.println("Trying to find WebElement list with locator " + locator.toString());
     }
 
     @Override
-    public void beforeAlertDismiss(WebDriver driver) {
-        System.out.println("Trying to dismiss alert");
+    public void afterFindElements(WebDriver driver, By locator, List<WebElement> result) {
+        WebDriverListener.super.afterFindElements(driver, locator, result);
+        System.out.println("Found WebElements list with locator " + locator.toString());
     }
 
     @Override
-    public void beforeNavigateTo(String url, WebDriver driver) {
-        System.out.println("Trying to navigate to:" + url);
+    public void beforeFindElement(WebElement element, By locator) {
+        WebDriverListener.super.beforeFindElement(element, locator);
+        System.out.println("Trying to find WebElement with locator " + locator.toString());
     }
 
     @Override
-    public void afterNavigateTo(String url, WebDriver driver) {
-        System.out.println("Navigated to: " + url);
+    public void afterFindElement(WebElement element, By locator, WebElement result) {
+        WebDriverListener.super.afterFindElement(element, locator, result);
+        System.out.println("Found WebElement with locator " + locator.toString());
     }
 
     @Override
-    public void beforeNavigateBack(WebDriver driver) {
-        System.out.println("Trying to navigate back");
+    public void beforeFindElements(WebElement element, By locator) {
+        WebDriverListener.super.beforeFindElements(element, locator);
+        System.out.println("Trying to find WebElement list with locator " + locator.toString());
     }
 
     @Override
-    public void afterNavigateBack(WebDriver driver) {
-        System.out.println("Navigated back");
+    public void afterFindElements(WebElement element, By locator, List<WebElement> result) {
+        WebDriverListener.super.afterFindElements(element, locator, result);
+        System.out.println("Found WebElements list with locator " + locator.toString());
     }
 
     @Override
-    public void beforeNavigateForward(WebDriver driver) {
-        System.out.println("Trying to navigate forward");
+    public void beforeClear(WebElement element) {
+        WebDriverListener.super.beforeClear(element);
+        System.out.println("Trying to clear WebElement");
     }
 
     @Override
-    public void afterNavigateForward(WebDriver driver) {
-        System.out.println("Navigated forward");
+    public void afterClear(WebElement element) {
+        WebDriverListener.super.afterClear(element);
+        System.out.println("Cleared WebElement " + element);
     }
 
     @Override
-    public void beforeNavigateRefresh(WebDriver driver) {
-        System.out.println("Trying to refresh page");
+    public void beforeClick(WebElement element) {
+        WebDriverListener.super.beforeClick(element);
+        System.out.println("Trying to click WebElement");
     }
 
     @Override
-    public void afterNavigateRefresh(WebDriver driver) {
-        System.out.println("Refreshed page");
+    public void afterClick(WebElement element) {
+        WebDriverListener.super.afterClick(element);
+        System.out.println("Clicked WebElement");
     }
 
     @Override
-    public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println("Trying to find element with locator " + by.toString());
-    }
-
-    @Override
-    public void afterFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println("Found element with locator " + by.toString());
-    }
-
-    @Override
-    public void beforeClickOn(WebElement element, WebDriver driver) {
-        System.out.println("Trying to click on element");
-    }
-
-    @Override
-    public void afterClickOn(WebElement element, WebDriver driver) {
-        System.out.println("Clicked on element");
-    }
-
-    @Override
-    public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
+    public void beforeSendKeys(WebElement element, CharSequence... keysToSend) {
+        WebDriverListener.super.beforeSendKeys(element, keysToSend);
         if (keysToSend == null) {
             System.out.println("Trying to clear field with location " + element.getLocation());
         } else {
@@ -97,7 +91,8 @@ public class DriverEventListener implements WebDriverEventListener {
     }
 
     @Override
-    public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
+    public void afterSendKeys(WebElement element, CharSequence... keysToSend) {
+        WebDriverListener.super.afterSendKeys(element, keysToSend);
         if (keysToSend == null) {
             System.out.println("Cleared field with location " + element.getLocation());
         } else {
@@ -105,48 +100,4 @@ public class DriverEventListener implements WebDriverEventListener {
         }
     }
 
-    @Override
-    public void beforeScript(String script, WebDriver driver) {
-        System.out.println("Trying to execute script: " + script);
-    }
-
-    @Override
-    public void afterScript(String script, WebDriver driver) {
-        System.out.println("Executed script");
-    }
-
-    @Override
-    public void beforeSwitchToWindow(String windowName, WebDriver driver) {
-        System.out.println("Trying to switch to window " + windowName);
-    }
-
-    @Override
-    public void afterSwitchToWindow(String windowName, WebDriver driver) {
-        System.out.println("Switched window " + windowName);
-    }
-
-    @Override
-    public void onException(Throwable throwable, WebDriver driver) {
-
-    }
-
-    @Override
-    public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
-        System.out.println("Trying to get screenshot");
-    }
-
-    @Override
-    public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
-        System.out.println("Done screenshot");
-    }
-
-    @Override
-    public void beforeGetText(WebElement webElement, WebDriver webDriver) {
-        System.out.println("Trying to get text for WebElement");
-    }
-
-    @Override
-    public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
-        System.out.println("Taken text of WebElement. Text wast " + s);
-    }
 }
