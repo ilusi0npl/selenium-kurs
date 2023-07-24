@@ -23,20 +23,17 @@ public class RelativeLocatorsTest {
     @Test
     public void relativeLocatorTest() {
         WebElement pageTitle = driver.findElement(By.tagName("h2"));
+        WebElement usernameTextField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(pageTitle));
+        WebElement passwordTextField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(usernameTextField));
+        WebElement loginButton = driver.findElement(RelativeLocator.with(By.tagName("button")).below(passwordTextField));
 
-        WebElement firstNameTextField = driver.findElement(RelativeLocator.with(By.tagName("input")).below(pageTitle));
-
-        WebElement lastNameTextFieldSuperSecretPassword = driver.findElement(RelativeLocator.with(By.tagName("input")).below(firstNameTextField));
-
-        WebElement loginButton = driver.findElement(RelativeLocator.with(By.tagName("button")).below(lastNameTextFieldSuperSecretPassword));
-
-        firstNameTextField.sendKeys("tomsmith");
-        lastNameTextFieldSuperSecretPassword.sendKeys("SuperSecretPassword!");
+        usernameTextField.sendKeys("tomsmith");
+        passwordTextField.sendKeys("SuperSecretPassword!");
         loginButton.click();
 
-        WebElement informationMessage = driver.findElement(By.id("flash-messages"));
+        WebElement informationAlert = driver.findElement(By.id("flash-messages"));
 
-        assertEquals(informationMessage.getText(), "You logged into a secure area!\n×");
+        assertEquals(informationAlert.getText(), "You logged into a secure area!\n×");
     }
 
     @AfterMethod
