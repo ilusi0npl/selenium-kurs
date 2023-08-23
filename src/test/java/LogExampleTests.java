@@ -8,7 +8,6 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 
 import java.util.Date;
@@ -35,7 +34,7 @@ public class LogExampleTests {
         loggingPreferences.enable(LogType.BROWSER, Level.INFO);
 
         //Ustawiamy nasze preferencje logowania jako wymaganą właściwość
-        chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
+        chromeOptions.setCapability(ChromeOptions.LOGGING_PREFS, loggingPreferences);
 
         //Łączymy ChromeOptions z LoggingPreferences
         chromeOptions.merge(chromeOptions);
