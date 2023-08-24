@@ -39,7 +39,12 @@ public class DatePicker {
 
     //Metoda służy do wybrania daty w DatePickerze
     public void setDate(String dateToSelect) {
-        String currentMonthFromDatePicker = currentMonthTitle.getText();
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        // Thread sleep dodany tylko i wyłącznie aby pokazać działanie
+      }
+      String currentMonthFromDatePicker = currentMonthTitle.getText();
         long differenceBetweenMonths = getDateDifferenceInMonths(dateToSelect, currentMonthFromDatePicker);
         int dayToSet = getDayFromDate(dateToSelect);
 

@@ -25,8 +25,8 @@ public class SeleniumGridExampleTest {
     public void searchInDuckDuckGoTest() {
         driver.navigate().to("https://duckduckgo.com/");
 
-        driver.findElement(By.id("search_form_input_homepage")).sendKeys("JavaStart");
-        driver.findElement(By.id("search_form_input_homepage")).submit();
+        driver.findElement(By.name("q")).sendKeys("JavaStart");
+        driver.findElement(By.name("q")).submit();
 
         String pageTitle = driver.getTitle();
 
