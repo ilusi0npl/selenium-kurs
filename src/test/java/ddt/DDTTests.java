@@ -16,7 +16,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class DDTTests {
 
-    private String baseUrl = "http://google.pl";
+    private String baseUrl = "https://duckduckgo.com/";
     private WebDriver driver;
     private String searchQuery;
     private String expectedResult;
@@ -32,10 +32,10 @@ public class DDTTests {
         int expectedResultColumn = 1;
 
         ExcelSheetReader excelSheetReader = new ExcelSheetReader();
+        String excelFileLocation = System.getProperty("user.dir") + "/src/main/resources/" + "DDT_File.xlsx";
 
         try {
-            String excelFileLocation = System.getProperty("user.dir") + "/src/main/resources/" + "DDT_FILE.xlsx";
-            excelSheetReader.setExcelFileSheet(excelFileLocation, "GoogleSearch");
+            excelSheetReader.setExcelFileSheet(excelFileLocation, "DuckDuckGoSearch");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,16 +46,15 @@ public class DDTTests {
         List<String> expectedResultList = sheetDataReader.getDataForColumn(expectedResultColumn);
 
         Object[] arrayOfTestCaseToExecute = new Object[expectedResultList.size()];
-
         for (int testCase = 0; testCase < expectedResultList.size(); testCase++) {
-            arrayOfTestCaseToExecute[testCase] =
-                    new DDTTests(searchQueryList.get(testCase), expectedResultList.get(testCase));
+            arrayOfTestCaseToExecute[testCase] = new DDTTests(searchQueryList.get(testCase), expectedResultList.get(testCase));
         }
         return arrayOfTestCaseToExecute;
     }
 
     @BeforeMethod
     public void beforeTest() {
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get(baseUrl);
@@ -68,7 +67,8 @@ public class DDTTests {
         searchField.sendKeys(searchQuery);
         searchField.submit();
 
-        assertEquals(driver.getTitle(), expectedResult);
+        assertEquals(driver.getTitle(),expectedResult);
+
     }
 
     @AfterMethod
