@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class SecondAutomatedTest {
@@ -12,7 +13,6 @@ public class SecondAutomatedTest {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
@@ -22,7 +22,7 @@ public class SecondAutomatedTest {
 
         String pageTitle = driver.getTitle();
 
-        assertTrue(pageTitle.equals("Selenium"));
+        assertEquals(pageTitle, "Selenium");
     }
 
     @AfterMethod

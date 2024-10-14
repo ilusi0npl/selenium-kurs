@@ -19,7 +19,6 @@ public class CookiesTest {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
         driver.navigate().to(LOGIN_URL);
