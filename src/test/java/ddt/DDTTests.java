@@ -54,7 +54,6 @@ public class DDTTests {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.http.factory", "jdk-http-client");
         driver = new ChromeDriver();
         driver.get(baseUrl);
     }
