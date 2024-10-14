@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Level;
 
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class LogExampleTests {
@@ -22,7 +23,6 @@ public class LogExampleTests {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
 
         //Tworzymy obiekt ChromeOptions
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -74,7 +74,7 @@ public class LogExampleTests {
             System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
 
             //Sprawdzamy czy wpis nie jest zakwalifikowany jako SEVERE, czyli błąd
-            assertFalse(entry.getLevel().equals(Level.SEVERE));
+            assertNotEquals(Level.SEVERE, entry.getLevel());
         }
         System.out.println("=======================================================");
     }
