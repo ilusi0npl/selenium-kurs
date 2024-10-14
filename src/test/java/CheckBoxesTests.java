@@ -16,15 +16,14 @@ public class CheckBoxesTests {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.navigate().to("http://theinternet.przyklady.javastart.pl/checkboxes");
     }
 
     @Test
     public void checkboxesTest() {
-        WebElement firstCheckbox = driver.findElement(By.xpath("//*[@id=\'checkboxes\']/input[1]"));
-        WebElement secondCheckbox = driver.findElement(By.xpath("//*[@id=\'checkboxes\']/input[2]"));
+        WebElement firstCheckbox = driver.findElement(By.xpath("//*[@id='checkboxes']/input[1]"));
+        WebElement secondCheckbox = driver.findElement(By.xpath("//*[@id='checkboxes']/input[2]"));
 
         assertFalse(firstCheckbox.isSelected());
         assertTrue(secondCheckbox.isSelected());
