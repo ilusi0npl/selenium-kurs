@@ -16,7 +16,6 @@ public class JavaScriptErrorTests {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
         driver.navigate().to("http://theinternet.przyklady.javastart.pl/javascript_error");

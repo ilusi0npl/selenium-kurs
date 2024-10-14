@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Login Tests">
+
+    <test name="Login using empty username and password">
+        <parameter name="username" value=""/>
+        <parameter name="password" value=""/>
+        <parameter name="expectedWarning" value="Your username is invalid!"/>
+        <classes>
+            <class name="testng.practice.tests.LoginTests"/>
+        </classes>
+    </test>
+
+    <test name="Login using correct username and incorrect password">
+        <parameter name="username" value="tomsmith"/>
+        <parameter name="password" value="Bad password"/>
+        <parameter name="expectedWarning" value="Your password is invalid!"/>
+        <classes>
+            <class name="testng.practice.tests.LoginTests"/>
+        </classes>
+    </test>
+
+    <test name="Login using incorrect username and correct password">
+        <parameter name="username" value="Bad login"/>
+        <parameter name="password" value="SuperSecretPassword!"/>
+        <parameter name="expectedWarning" value="Your username is invalid!"/>
+        <classes>
+            <class name="testng.practice.tests.LoginTests"/>
+        </classes>
+    </test>
+
+</suite>

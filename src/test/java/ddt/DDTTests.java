@@ -16,10 +16,10 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class DDTTests {
 
-    private String baseUrl = "https://duckduckgo.com/";
+    private final String baseUrl = "http://google.pl";
     private WebDriver driver;
-    private String searchQuery;
-    private String expectedResult;
+    private final String searchQuery;
+    private final String expectedResult;
 
     public DDTTests(String searchQuery, String expectedResult) {
         this.searchQuery = searchQuery;
@@ -55,7 +55,6 @@ public class DDTTests {
     @BeforeMethod
     public void beforeTest() {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get(baseUrl);
     }
