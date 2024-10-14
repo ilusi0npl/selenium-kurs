@@ -19,7 +19,6 @@ public class FluentWaitTests2 {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.navigate().to("http://theinternet.przyklady.javastart.pl/dynamic_loading/2");
     }
