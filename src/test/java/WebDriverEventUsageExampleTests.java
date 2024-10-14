@@ -16,7 +16,6 @@ public class WebDriverEventUsageExampleTests {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
         //Utworzenie obiektu typu DriverEventListener
