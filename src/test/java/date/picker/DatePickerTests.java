@@ -18,7 +18,6 @@ public class DatePickerTests {
 
     @BeforeMethod
     public void beforeTest() {
-        System.setProperty("webdriver.chrome.driver", "C:/drivers/chromedriver.exe");
         driver = new ChromeDriver();
 
         driver.navigate().to("http://przyklady.javastart.pl/test/full_form.html");
