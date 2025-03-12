@@ -25,7 +25,7 @@ public class FirstAutomatedTest {
 
         String pageTitle = driver.getTitle();
 
-        assertTrue(pageTitle.contains("JavaStart"));
+        assertTrue(pageTitle.contains("DuckDuckGo"));
     }
 
     @Test
